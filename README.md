@@ -13,3 +13,8 @@ bgt x11,x12,label
 beq x11,x11,exit
 label: addi x11,x11,1
 exit:
+
+
+
+##### loading more than 12 bits
+##### lui rd,immediate[19-0]
