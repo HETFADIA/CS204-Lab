@@ -18,3 +18,14 @@ exit:
 
 ##### loading more than 12 bits
 ##### lui rd,immediate[19-0]
+
+
+##### swap in risc v
+##### cpp => swap(a,b);
+##### risc v
+li x11,2
+li x12,3
+add x11,x11,x12 # x=x+y
+sub x12,x11,x12 # y=x-y
+sub x11,x11,x12 # x=x-y
+
