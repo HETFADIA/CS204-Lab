@@ -30,3 +30,10 @@ sub x12,x11,x12 # y=x-y
 sub x11,x11,x12 # x=x-y
 
 ![image](https://user-images.githubusercontent.com/62541263/109992434-45a14b00-7d31-11eb-87d0-4e917d7078a1.png)
+
+
+li x20, 0x10000000 # Address
+li x21, 0xdeadbeef # Data
+sw x21, 0(x20) # Mem[x20+0] = x21
+![image](https://user-images.githubusercontent.com/62541263/110138906-7ac4a080-7df8-11eb-8a09-c5c2f4f258a1.png)
+
