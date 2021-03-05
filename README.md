@@ -87,3 +87,23 @@ lw x14,8(x11)
 lw x15,12(x11)
 lw x16,16(x11)
 
+
+
+Task 4 lab 3
+.data
+lab1: .word 2,3,4,5,6,7,8,9,0,1
+
+.text
+la x11,lab1 # v.begin()
+addi x20,x11,40 #final address v.end()
+li x21,0 #lld suma
+loop:
+lw x12,0(x11)
+addi x11,x11,4
+add x21,x21,x12
+beq x11,x20,exit #address==final address=>exit
+j loop
+
+exit:
+![image](https://user-images.githubusercontent.com/62541263/110162915-5d51ff80-7e15-11eb-88f4-9b33913c5386.png)
+
