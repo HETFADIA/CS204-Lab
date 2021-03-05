@@ -59,3 +59,17 @@ lw x1, var1
 
 ![image](https://user-images.githubusercontent.com/62541263/110142459-32a77d00-7dfc-11eb-9bd3-2f7375b3182b.png)
 
+
+
+
+li x11,11 # i=10
+li x12,10 # j = 10
+li x13,11 # g=11
+li x14,9  # h=9
+beq x11,x12,label
+sub x15,x13,x14
+beq x11,x11,exit
+label:
+add x15,x13,x14
+exit:
+
