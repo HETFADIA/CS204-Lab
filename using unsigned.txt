@@ -1,8 +1,0 @@
-li x11,-1
-li x12,100
-bgtu x11,x12,exit
-li x11,10
-exit:
-
-bgtu => branch greater than (unsigned)
-
