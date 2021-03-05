@@ -73,3 +73,17 @@ label:
 add x15,x13,x14
 exit:
 
+
+Task 4 lab 3
+.data
+lab1: .word 10, -20, 30, 40, 5
+
+.text
+
+la x11,lab1
+lw x12,0(x11)
+lw x13,4(x11)
+lw x14,8(x11)
+lw x15,12(x11)
+lw x16,16(x11)
+
