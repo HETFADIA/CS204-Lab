@@ -55,3 +55,7 @@ var3: .word 0xffffffff
 #commands text me ate hai
 
 lw x1, var1
+
+
+![image](https://user-images.githubusercontent.com/62541263/110142459-32a77d00-7dfc-11eb-9bd3-2f7375b3182b.png)
+
