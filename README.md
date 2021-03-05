@@ -45,3 +45,13 @@ beq x0,x0,exit
 li x11,1
 exit:
 
+
+
+.data
+var1: .byte 10
+var2: .byte 20
+var3: .word 0xffffffff
+.text
+#commands text me ate hai
+
+lw x1, var1
