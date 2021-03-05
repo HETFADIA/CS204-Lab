@@ -1,0 +1,45 @@
+﻿I learnt many things from the lab.
+My learnings are listed below:
+
+
+In task 1, I learnt that the memory of the registers starts from 0x1000000. Each register takes 8 bytes of memory. So When a new register is given memory the memory 0x1000000+8 is used.
+
+
+I also came to know that registers are faster than memory but are very few as compared to memory.
+Registers are placed right next to alu so signals can travel very fast.
+
+
+Also I came to know that different registers have different usages. Some are fixed which store stack pointer, global pointer etc . They are fixed and still can be overwritten.
+
+
+I also learnt the debugging tool( the step button ) in the venus. I also noticed its usefulness.
+
+
+In task 2 , I learnt how to use directives. I learnt how to use labels. I also learnt how to address data using a label. Also I came to know that labels can be jumped using the j main.
+
+
+I also learnt that after separating the code using .data and .txt it becomes easier to write longer codes.
+
+
+I learnt basic operations like add, addi ,sub , mul, rem, xor, not etc. I learnt how value is stored in registers.
+
+
+I also learnt that there are different operators for signed and unsigned numbers. Both are stored in a similar way but are distinguished when operations are done on them.
+
+
+Then I learnt that using addi the immediate value can’t be more than 12 bits (the value should be -2048 to 2047) . So to do large calculations we need to store them in a register or memory first and then do the useful calculations.
+
+
+I also came to know that a half word takes 2 bytes of memory, a word takes  4 bytes of memory, and a double word takes 8 bytes of memory.
+
+
+I also came to know how an array is stored in memory in RISC-V. Also I wrote programs on how to access kth element of an array (arr[k]).
+
+
+I also learnt how to load words, load address etc in the lab.
+
+
+Also I learnt how if else and switch statements can be implemented in RISC V  using labels. Beq (branch equal) , bne( branch not equal) , blt(branch less than), bgt(branch greater than) ,bltu(branch less than unsigned) etc are used in the implementation of if else and switch statements. Also using these labels we can make for loop, while loop, do recursion.
+
+
+Using assembly language we can take full control of memory because here a user knows how he is going to use the registers and memory ahead. While in languages like c++, c , python the compiler does the memory management which becomes expensive.

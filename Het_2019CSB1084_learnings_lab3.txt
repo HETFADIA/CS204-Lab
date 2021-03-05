@@ -1,0 +1,25 @@
+﻿This lab was also interesting. I learnt the following things from this lab:
+
+
+I learnt how lui works and loads the upper immediate.
+
+
+I learnt how stack works in the RISC-V language and how it can be useful to store data.
+
+
+I also learnt how to swap two numbers using xor, addition & subtraction and also using stack. I also learnt that for stack memory is needed while for addition and subtraction or xor the swapping can be done without the use of memory also.
+
+
+I also learnt how some of the bits of a number can be assigned to another number using xor, or, and,slli ( shift left logical immediate) and srli (shift right logical immediate).
+
+
+I also learnt how jal and jalr works. I also saw how recursive functions can be implemented in the RISC-V using stack pointer and jalr.
+
+
+I also learnt how j main can be used to jump directly to the label main. This becomes very helpful in writing recursive as well as iterative functions. Without this for loop, while loop, etc are impossible.
+
+
+I also learnt how addition operations are performed on the elements of an array. How we can choose the max or min element in the array. Also various other operations like the sum of elements greater than 10 in the array can be calculated.
+
+
+I also saw how factorial is calculated recursively in RISC-V. Also I wrote the iterative code for finding the factorial of a number.
