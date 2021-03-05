@@ -127,3 +127,21 @@ j loop
 exit:
 ![image](https://user-images.githubusercontent.com/62541263/110163893-a8b8dd80-7e16-11eb-8f5f-2a77c9262c2d.png)
 
+.data
+lab1: .word 6,-1,1,-1,1,-1,1,-1,1,-2
+
+.text
+la x11,lab1 # v.begin()
+addi x20,x11,40 #final address v.end()
+li x21,0 #lld suma
+li x22,5 # comparator storer a>0?
+loop:
+lw x12,0(x11)
+addi x11,x11,4
+ble x12,x22,less_than_five_found
+add x21,x21,x12
+less_than_five_found:
+beq x11,x20,exit #address==final address=>exit
+j loop
+exit:
+![image](https://user-images.githubusercontent.com/62541263/110164158-fb929500-7e16-11eb-99be-07b008c0f599.png)
