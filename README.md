@@ -37,3 +37,11 @@ li x21, 0xdeadbeef # Data
 sw x21, 0(x20) # Mem[x20+0] = x21
 ![image](https://user-images.githubusercontent.com/62541263/110138906-7ac4a080-7df8-11eb-8a09-c5c2f4f258a1.png)
 
+
+
+
+main:
+beq x0,x0,exit
+li x11,1
+exit:
+
