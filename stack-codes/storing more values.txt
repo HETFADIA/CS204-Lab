@@ -1,0 +1,19 @@
+addi sp , sp ,-12
+li x11,11
+li x12,12
+li x13,13
+sw x11,8(sp)
+sw x12,4(sp)
+sw x13,0(sp)
+
+li x11,1000
+li x12,1000
+li x13,1000
+
+
+lw x13,0(sp)
+addi sp ,sp ,4
+lw x12,0(sp)
+addi sp ,sp ,4
+lw x11,0(sp)
+addi sp,sp , 4
