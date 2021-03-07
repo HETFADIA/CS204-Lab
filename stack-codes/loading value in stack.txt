@@ -1,0 +1,9 @@
+addi sp , sp ,-4
+li x11,10
+
+sw x11,0(sp) #store in stack
+
+li x11,1000 #change the value of the word
+
+lw x11,0(sp)
+addi sp , sp ,4
