@@ -1,0 +1,4 @@
+https://stackoverflow.com/questions/47007059/risc-v-s-format-instructions-table
+0b000=> sb
+0b010=> sw
+0b011=> sd
