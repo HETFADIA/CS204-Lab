@@ -1,0 +1,14 @@
+.data
+lab: .asciiz "you can have my book"
+.text
+li x13,20 # x12 = len(lab)
+la x11,lab # auto i => x11
+add x14,x11,x13 # x14=v.end()
+loop:
+lb x12,0(x11) # x12= *i         auto i = v.begin(); i!=v.end(); 
+addi x12,x12,-32 # value -=32 
+sb x12,0(x11) # v[i]=value
+addi x11,x11,1 # i++
+beq x11,x14,exit # if(i== v.end()) {break;}
+j loop
+exit:
