@@ -11,3 +11,6 @@ addi x11,x11,4
 beq x11,x12,exit
 j loop
 exit:# x14 contains sum
+
+
+![image](https://user-images.githubusercontent.com/62541263/110232452-b1f39880-7f43-11eb-9855-9c816e5da7b5.png)
