@@ -157,3 +157,23 @@ sw x12,0(x11)
 
 ![image](https://user-images.githubusercontent.com/62541263/110232647-f9c6ef80-7f44-11eb-82b9-38c5f1de03a3.png)
 ![image](https://user-images.githubusercontent.com/62541263/110232656-02b7c100-7f45-11eb-95a6-3d80d4e29fa5.png)
+
+
+.data
+lab: 
+.asciiz "abcdefghijklmnopqrst" 
+.asciiz "hithere"
+.text
+li x13,28 # x12 = len(lab)
+la x11,lab # auto i => x11
+add x14,x11,x13 # x14=v.end()
+loop:
+lb x12,0(x11) # x12= *i         auto i = v.begin(); i!=v.end(); 
+addi x12,x12,-32 # value -=32 
+sb x12,0(x11) # v[i]=value
+addi x11,x11,1 # i++
+beq x11,x14,exit # if(i== v.end()) {break;}
+j loop
+exit:
+![image](https://user-images.githubusercontent.com/62541263/110250493-7be50180-7fa1-11eb-9741-5536e0283c84.png)
+
