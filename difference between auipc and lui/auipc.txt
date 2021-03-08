@@ -1,0 +1,8 @@
+.data
+lab: .asciiz "hi there"
+
+.text
+la x11,lab
+
+
+# la is a pusedo instructin that needs auipc
