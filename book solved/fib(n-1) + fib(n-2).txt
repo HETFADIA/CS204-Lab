@@ -1,8 +1,7 @@
-
 li x10,10
-jal x1,fact
+jal x1,fib
 j exit
-fact:
+fib:
 addi sp,sp,-8
 sw x1,4(sp)
 sw x10,0(sp)
@@ -20,7 +19,7 @@ jalr x0,x1,0
 l1:
 
 addi x10,x10,-1
-jal x1,fact
+jal x1,fib
 add x6,x10,x0
 lw x10,0(sp)
 
@@ -29,7 +28,7 @@ addi sp,sp,-4
 sw x6,0(sp)
 
 addi x10,x10,-2
-jal x1,fact
+jal x1,fib
 lw x6,0(sp)
 addi sp,sp,4
 add x6,x10,x6
