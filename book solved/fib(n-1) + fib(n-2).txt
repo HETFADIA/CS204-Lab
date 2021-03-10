@@ -1,0 +1,40 @@
+
+li x10,10
+jal x1,fact
+j exit
+fact:
+addi sp,sp,-8
+sw x1,4(sp)
+sw x10,0(sp)
+li x11,1
+bgt x10,x11,l1
+beq x10,x11,else
+li x10,0
+j if
+else:
+li x10,1
+if:
+addi sp,sp,8
+jalr x0,x1,0
+
+l1:
+
+addi x10,x10,-1
+jal x1,fact
+add x6,x10,x0
+lw x10,0(sp)
+
+
+addi sp,sp,-4
+sw x6,0(sp)
+
+addi x10,x10,-2
+jal x1,fact
+lw x6,0(sp)
+addi sp,sp,4
+add x6,x10,x6
+lw x1,4(sp)
+add x10,x0,x6
+addi sp,sp,8
+jalr x0,x1,0
+exit:
