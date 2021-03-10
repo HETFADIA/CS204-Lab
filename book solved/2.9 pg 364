@@ -1,0 +1,33 @@
+.data
+number: .asciiz "-24310279"
+.text
+la x11,number
+li x13,0 # x13= counter
+li x14,0 # x14=integer of number
+li x15,10
+li x16,45
+li x17,0 # x17=isnegative
+loop:
+lb x12,0(x11)
+beq x12,x0,exit
+beq x12,x16,isnegative
+mul x14,x14,x15
+add x14,x14,x12
+addi x14,x14,-48
+addi x13,x13,1
+addi x11,x11,1
+j loop
+
+isnegative:
+
+li x17,-1
+addi x11,x11,1
+j loop
+
+
+
+exit:
+beq x17,x0,break
+mul x14,x17,x14
+
+break:
