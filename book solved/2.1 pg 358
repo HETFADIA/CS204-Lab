@@ -1,0 +1,16 @@
+.data
+arr1: .word 1 2 3 4 5 6 7 8 9 10
+arr2: .word 10 9 8 7 6 5 4 3 2 1
+.text
+la x10,arr1
+la x11,arr2
+li x28,7 #i
+li x29,3 #j
+sub x13,x28,x29 # x13=i-j
+li x14,4
+mul x13,x13,x14 # x13=(i-j)*4
+
+add x13,x13,x10 # x13= A + i-j
+lw x13,0(x13) # x13=*(A +i-j)
+addi x12,x11,32 # x12= arr1+8*4
+sw x13,0(x12)
