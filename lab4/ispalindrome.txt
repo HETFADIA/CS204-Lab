@@ -1,0 +1,28 @@
+.data
+lab: .asciiz "madam"
+.text
+la x15,lab # x15.v.begin()
+add x16,x15,x0 # x16=v.end()
+li x19,1 # x19=ispalindrome
+loop:
+
+lw x17,0(x16)
+beq x17,x0,exit
+addi x16,x16,1
+j loop
+exit:
+addi x16,x16,-1
+ispalindrome:
+li x19,0
+lb x17,0(x15)
+lb x18,0(x16)
+bne x17,x18,break
+li x19,1
+addi x15,x15,1
+addi x16,x16,-1
+bgt x15,x16,break
+beq x15,x16,break
+j ispalindrome
+break:
+li x20,0x10000100
+sw x19,0(x20) # the output is stored at 0x10000100
