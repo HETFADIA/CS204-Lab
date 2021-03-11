@@ -1,6 +1,6 @@
 .data
 array: .word 1 2 4 7 8 9 10 15 17 19
-length: .word 10
+length: .word 0
 s: .word 10
 
 .text
@@ -11,6 +11,7 @@ li x14,0 # x14=low
 addi x15,x12,-1 # x15=high=length-1
 li x17,-1 # x17=answer
 li x22,1 # x22=1
+j binary_search
 binary_search:
 bgt x14,x15,exit   # if(low>high) {break;}
 add x16,x14,x15 # mid= high + low
