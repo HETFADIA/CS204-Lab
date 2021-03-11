@@ -1,0 +1,44 @@
+#void fib(n){
+#	if(n<=1){return n;}
+#    else return fib(n-1)+fib(n-2);
+#}
+.data
+array: .word 100 90 80 10 20 30 40 50 60 70
+length: .word 10
+
+.text
+li x5,1 # x5=1
+la x10,array
+lw x11,length
+jal x1,bubble_sort
+j bubble_sort_over
+bubble_sort:
+addi sp,sp,-4
+sw x1,0(sp)
+beq x11,x5,bubble_sort_over
+li x20,0 # x20 = i or x20= counter
+addi x11,x11,-1 # x10=n-1
+loop:
+
+add x21,x0,x20 # x21=i
+slli x21,x21,2 # x21=4*i
+add x21,x10,x21 # x21=arr+4
+lw x22,0(x21)
+lw x23,4(x21)
+ble x22,x23,continue
+sw x22,4(x21)
+sw x23,0(x21)
+continue:
+beq x20,x11,exit  # if one element is left then exit
+addi x20,x20,1 #i++
+j loop
+exit:
+lw x1,0(sp)
+addi sp,sp,4
+jal x1, bubble_sort
+bubble_sort_over:
+
+
+
+
+
