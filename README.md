@@ -208,3 +208,41 @@ jalr x0,x1,0
 exit:
 ![image](https://user-images.githubusercontent.com/62541263/110898342-125c4e80-8325-11eb-9e86-3e32e5dc39e3.png)
 
+
+
+
+
+
+li x10,7
+jal x1,fib
+j exit
+fib:
+addi sp,sp,-8
+sw x1,4(sp)
+sw x10,0(sp)
+li x11,1
+bgt x10,x11,l1
+
+addi sp,sp,8
+jalr x0,x1,0
+
+l1:
+addi x10,x10,-1
+jal x1,fib
+add x6,x10,x0
+
+
+lw x10,0(sp)
+addi x10,x10,-2
+addi sp,sp,-4
+sw x6,0(sp)
+jal x1,fib
+lw x6,0(sp)
+addi sp,sp,4
+add x10,x10,x6
+lw x1,4(sp)
+
+addi sp,sp,8
+jalr x0,x1,0
+exit:
+![image](https://user-images.githubusercontent.com/62541263/110899009-53089780-8326-11eb-9f48-6cab53ad7ab6.png)
