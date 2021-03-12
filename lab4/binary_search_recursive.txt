@@ -1,0 +1,45 @@
+# binary_search recursive
+
+.data
+array: .word 1 2 3 4 5 6 7 8 9 10
+s: .word 11
+length: .word 10
+.text
+la x11,array # x11 = array.begin()
+lw x12,s # x12=target
+lw x13,length # x13=array.size()
+li x14,0 # x14=low
+add x15,x13,x0
+addi x15,x15,-1 # x15=high
+li x19,-1 # x19=answer  initialized to -1
+jal x1,binary_search
+j exit
+binary_search:
+bgt x14,x15,out
+addi sp,sp,-4
+sw x1,0(sp) # stack.push(x1)
+add x16,x14,x15 # x16=low+high
+srli x16,x16,1 # x16=(low+high)/2=mid
+slli x17,x16,2 # x17=4*mid
+add x17,x17,x11 # x17= &arr[mid]
+lw x18,0(x17) # x18=arr[mid]
+beq x18,x12,found
+blt x18,x12,increment_low # if arr[mid] < target then low=mid+1 as the target is after mid for sure
+j decrement_high
+found:
+addi x19,x16,1 # found on mid and 1 added to make one based indexing
+lw x1,0(sp)# x1=stack.pop()
+addi sp,sp, 4 # stack.pop()
+jalr x0,x1,0
+decrement_high:
+addi x15,x16,-1 # high = mid-1
+jal x1, binary_search
+j out
+increment_low:
+addi x14,x16,1 # low= mid+1
+jal x1, binary_search
+out:
+lw x1,0(sp)# x1=stack.pop()
+addi sp,sp, 4 # stack.pop()
+jalr x0,x1,0
+exit:
