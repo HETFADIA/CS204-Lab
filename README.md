@@ -178,3 +178,33 @@ exit:
 ![image](https://user-images.githubusercontent.com/62541263/110250493-7be50180-7fa1-11eb-9741-5536e0283c84.png)
 
 ![image](https://user-images.githubusercontent.com/62541263/110250796-5eb13280-7fa3-11eb-80b4-552538e04708.png)
+
+
+
+factorial code 
+li x10,10
+jal x1,fact
+j exit
+fact:
+addi sp,sp,-8
+sw x10,4(sp)
+sw x1,0(sp)
+li x11,1
+bgt x10,x11,l1
+li x10,1
+addi sp,sp,8
+jalr x0,x1,0
+
+l1:
+addi x10,x10,-1
+jal x1,fact
+add x6,x10,x0
+lw x1,0(sp)
+lw x10,4(sp)
+
+mul x10,x10,x6
+addi sp,sp,8
+jalr x0,x1,0
+exit:
+![image](https://user-images.githubusercontent.com/62541263/110898342-125c4e80-8325-11eb-9e86-3e32e5dc39e3.png)
+
