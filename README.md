@@ -246,3 +246,48 @@ addi sp,sp,8
 jalr x0,x1,0
 exit:
 ![image](https://user-images.githubusercontent.com/62541263/110899009-53089780-8326-11eb-9f48-6cab53ad7ab6.png)
+
+
+
+
+
+
+
+
+.data
+array: .word 1 2 3 4 5 6 7 8 9 10
+s: .word 1
+length: .word 10
+
+.text
+la x11,array # x11 = array.begin()
+lw x12,s # x12=target
+lw x13,length # x13=array.size()
+li x14,0 # x14=low
+add x15,x13,x0
+addi x15,x15,-1 # x15=high
+li x19,-1 # x19=answer  initialized to -1
+jal x1,binary_search
+j exit
+binary_search:
+add x16,x14,x15 # x16=low+high
+srli x16,x16,1 # x16=(low+high)/2=mid
+slli x17,x16,2 # x17=4*mid
+add x17,x17,x11 # x17= &arr[mid]
+lw x18,0(x17) # x18=arr[mid]
+beq x18,x12,found
+blt x18,x12,increment_low # if arr[mid] < target then low=mid+1 as the target is after mid for sure
+j decrement_high
+found:
+addi x19,x16,1 # found on mid and 1 added to make one based indexing
+j exit
+decrement_high:
+addi x15,x16,-1 # high = mid-1
+j binary_search
+increment_low:
+addi x14,x16,1 # low= mid+1
+
+j binary_search
+
+exit:
+![image](https://user-images.githubusercontent.com/62541263/110905075-eb574a00-832f-11eb-9980-862003cd6675.png)
