@@ -250,6 +250,45 @@ exit:
 
 
 
+# bubble_sort_recursive
+
+.data
+array: .word 10 9 8 7 6 5 4 3 2 1
+length: .word 10
+.text
+la x11,array # x11=array.begin()
+lw x12,length # length=len(x11)
+li x13,1 
+jal x1,bubble_sort
+j exit
+bubble_sort:
+addi sp,sp,-4
+sw x1,0(sp)
+beq x12,x13,out # if n-1==1 {break;}
+addi x12,x12,-1 # n--
+
+li x14,0 # x14=index
+loop:
+beq x14,x12,call_again # if x14==n-1 {}
+slli x15,x14,2 # x15=4*x14
+add x15,x15,x11 # x15=&arr[i]
+lw x16,0(x15) # x16=arr[i]
+lw x17,4(x15) # x17=arr[i+1]
+addi x14,x14,1
+ble x16,x17,loop
+sw x16,4(x15)
+sw x17,0(x15)
+j loop
+
+call_again:
+lw x1,0(sp)
+addi sp,sp,4
+jal x1, bubble_sort
+
+out:
+j exit
+exit:
+![image](https://user-images.githubusercontent.com/62541263/110910988-1776c900-8338-11eb-9179-bdeb4f1a6d6a.png)
 
 
 
