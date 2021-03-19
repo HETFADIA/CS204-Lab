@@ -1,0 +1,6 @@
+.data
+lab: .word 0xFE123456
+lab2: .asciiz "FE123456"
+.text
+lb x11,lab # stored as 56 34 12 FE so 56 is answer
+lb x12,lab2 # the asciiz of 6 is 46
