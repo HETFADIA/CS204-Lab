@@ -427,7 +427,7 @@ while 1:
     print(a.checkFormat())
     print(a.decode())
     number=input()
-    number="".join(i for i in number if i!=" ")
+    number="".join(i for i in number if (i!=" " and i!="\t"))
     if len(number)==32:
         number=int(number,2)
     elif len(number)==8:
