@@ -1,4 +1,5 @@
 from bitstring import BitArray
+from bitstring import Bits
 number=0x40A85793
 
 class register:
@@ -422,16 +423,21 @@ class execute:
 
     def nextIR(self):
         return self.Memory.readWord(self.PC)
+def twos_complement(a):
+    return Bits(bin=a).int
 def bits_of_int_number(number):
     bin_number=bin(number)[2:]
     bin_number="0"*(32-len(bin_number))+bin_number
     print("First 7 bits are:",bin_number[:7])
-    print("rs2(8th to 13th) bits  are :",bin_number[7:12])
-    print("First 12 bits are:",bin_number[:12])
+    print("rs2(8th to 13th) bits  are :",bin_number[7:12],"x"+(str(int(bin_number[7:12],2))))
+    print("First 12 bits are imm for i type:",bin_number[:12],twos_complement(bin_number[:12]))
     print("RS1 is :",bin_number[12:17],"x"+(str(int(bin_number[12:17],2))))
     print("funct3 is :",bin_number[17:20])
     print("rd if RIUJ type is:",bin_number[20:25])
     print("last 7 bits:",bin_number[25:],str(int(bin_number[25:],2)))
+    print("imm for S and B type :",bin_number[:7]+bin_number[20:25],twos_complement(bin_number[:7]+bin_number[20:25]))
+    arr=[bin_number[:7],bin_number[7:12],bin_number[12:17],bin_number[17:20],bin_number[20:25],bin_number[25:]]
+    print(arr)
 
 number=0x40A85793
 print(bits_of_int_number(number))
