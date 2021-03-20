@@ -87,7 +87,7 @@ class execute:
             self.RS1 = self.IR[12:17]
             print("RS1:" + self.RS1,"x",int(self.RS1,2))
             self.RA = self.RegisterFile.readA(self.RS1)
-            print("RA:" + str(self.RA),"x",int(str(self.RA),2))
+            print("RA:" + str(self.RA),int(str(self.RA),2))
             self.funct3 = self.IR[17:20]
             print("funct3:" + self.funct3)
             if self.opcode == "0100011" and self.funct3 != "011":
@@ -247,7 +247,7 @@ class execute:
         self.RD = self.IR[20:25]
         print("RD:" + self.RD,"x",int(self.RD,2))
         self.RA = self.RegisterFile.readA(self.RS1)
-        print("RA:" + str(self.RA),"x",int(str(self.RA),2))
+        print("RA:" + str(self.RA),int(str(self.RA),2))
         self.RB = self.RegisterFile.readB(self.RS2)
         print("RB:" + str(self.RB),"x",int(str(self.RB),2))
         self.muxB = 0
@@ -353,7 +353,7 @@ class execute:
         self.RS2 = self.IR[7:12]
         print("RS2:" + self.RS2,"x",int(str(self.RS2),2))
         self.RA = self.RegisterFile.readA(self.RS1)
-        print("RA:" + str(self.RA),"x",int(str(self.RA),2))
+        print("RA:" + str(self.RA),int(str(self.RA),2))
         self.RB = self.RegisterFile.readB(self.RS2)
         print("RB:" + str(self.RB),"x",int(str(self.RB),2))
         self.muxB = 0
@@ -422,10 +422,24 @@ class execute:
 
     def nextIR(self):
         return self.Memory.readWord(self.PC)
+def bits_of_int_number(number):
+    bin_number=bin(number)[2:]
+    bin_number="0"*(32-len(bin_number))+bin_number
+    print("First 7 bits are:",bin_number[:7])
+    print("rs2(8th to 13th) bits  are :",bin_number[7:12])
+    print("First 12 bits are:",bin_number[:12])
+    print("RS1 is :",bin_number[12:17],"x"+(str(int(bin_number[12:17],2))))
+    print("funct3 is :",bin_number[17:20])
+    print("rd if RIUJ type is:",bin_number[20:25])
+    print("last 7 bits:",bin_number[25:],str(int(bin_number[25:],2)))
+
+number=0x40A85793
+print(bits_of_int_number(number))
 while 1:
     a=execute()
     print(a.checkFormat())
     print(a.decode())
+    
     number=input()
     number="".join(i for i in number if (i!=" " and i!="\t"))
     if len(number)==32:
@@ -438,3 +452,4 @@ while 1:
         number=int(number,16)
     else:
         number=int(number)
+    print(bits_of_int_number(number))
