@@ -217,7 +217,7 @@ class execute:
     def writeReg(self):
         if self.write_enable:
             self.RegisterFile.writeC(self.RD, self.RY)
-            print("RY:" + str(self.RY),"x",int(str(self.RY),2))
+            print("RY:" + str(self.RY),"x",int(bin(self.RY)[2:],2))
 
     def checkFormat(self):
         iORs = "0000011 0001111 0010011 0011011 0100011 1100111 1110011".split()
@@ -546,7 +546,7 @@ while 1:
     a=execute()
     print(a.checkFormat())
     print(a.decode())
-    # print(decode(number))
+    print(decode(number)) # tanmay decode works only for R format
     number=input()
     number="".join(i for i in number if (i!=" " and i!="\t"))
     if len(number)==32:
