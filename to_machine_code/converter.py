@@ -1,5 +1,5 @@
 file = open("temp2.txt", 'r')
-out = open('temp3.txt', 'w')
+out = open('temp2.txt', 'w')
 
 for i in file:
     j = i.split()
