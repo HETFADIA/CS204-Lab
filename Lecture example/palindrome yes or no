@@ -1,0 +1,29 @@
+.data
+string: .asciiz "madam" 
+yes: .asciiz "yes"
+no : .asciiz "no"
+.text
+li x20, 0x10000100 # the location to be stored
+lw x21,no # we load no
+sw x21,0(x20) # we have initially stored no on the location and will replace with yes if it is a palindrome
+la x11,string # x11=string.begin()
+la x12,string # x12=string.end()
+loop:
+lb x16,0(x12) # loop to find the length
+beq x16,x0,exit
+addi x12,x12,1 # length stored here length=x12-x11
+j loop
+exit:
+addi x12,x12,-1 # x12=string.rbegin() we dont want last bit
+while:
+bge x11,x12,store # if x11>=x12{break;}
+lb x13,0(x11)
+lb x14,0(x12) 
+bne x13,x14, out # if they are not equal we exit as no is already stored
+addi x11,x11,1 #x11++
+addi x12,x12,-1 # x12--;
+j while
+store:
+lw x21,yes # load yes
+sw x21,0(x20)# it will store yes on x20 ie 0x10000100
+out:
