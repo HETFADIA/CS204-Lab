@@ -1,0 +1,42 @@
+# void fun(){
+# 	for(int i=0;i<n;i++){
+#         if(i%2==0){
+#         	c[i]=a[i]+b[i];
+#         }
+#         else{
+#         	c[i]=a[i]-b[i];
+#         }
+#     }
+# }
+.data
+arra: .word 1 2 3 4 5 6 7 8 9 10
+arrb: .word 1 2 3 4 5 6 7 8 9 10
+arrc: .word 0 0 0 0 0 0 0 0 0 0
+length: .word 10
+.text
+la x11,arra # x11=a.begin()
+la x12,arrb # x12=b.begin()
+la x13,arrc
+lw x14,length # x14=a.size()
+li x15,0 # int x15=0 x15=index
+jal x1,loop
+loop:
+beq x15,x14,out
+lw x16,0(x11) # x16=*x11
+lw x17, 0(x12) # x17=*x12
+andi x21,x15,0x1 # x21=x15&1
+beq x21,x0,even # 0 based indexing
+beq x0,x0,odd
+even:
+add x18,x16,x17
+beq x0,x0,out_of_if_condition
+odd:
+sub x18,x16,x17
+out_of_if_condition:
+sw x18,0(x13) # x18 = * x13
+addi x11,x11,4
+addi x12,x12,4
+addi x13,x13,4
+addi x15,x15,1
+j loop
+out:
