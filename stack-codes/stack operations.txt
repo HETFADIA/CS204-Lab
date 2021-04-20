@@ -1,0 +1,73 @@
+.data
+operations: .asciiz "EEEDDEEE"
+data: .word 70 60 50 40 30 20
+DS: .asciiz "D Success"
+ES: .asciiz "E Success"
+target: .target_location: .word 0x10000200
+d: .asciiz "D"
+e: .asciiz "E"
+s : .asciiz "S"
+
+.text
+la x19,operations
+li x8,6
+li x30,0
+li x31,0 # x31=size
+for_loop:
+la x21 data
+lw x22 0(x21)
+addi x30 x0 0 #x30=counter
+addi x27 x0 20 #x27=size
+
+
+li x11 0x10000100 #address for storing
+addi x27 x11 0 #copy for dequeue
+la x28 operations
+lb x12 0(x28)
+
+lw x13,e # x13=E
+
+#D 68
+addi x14 x0 68
+
+
+lw x7,s # x7=S
+while_for_loop:
+
+beq x12 x0 exit
+
+beq x12 x13 E
+beq x12 x14 D
+beq x12 x7 Size
+E:
+
+addi x31,x31,1
+beq x31,x8,over_flow # x31=6 then overflow
+sw x22 0(x11) #store data
+addi x11 x11 4
+addi x21 x21 4 #inc data add
+lw x22 0(x21)
+
+addi x28 x28 1
+lb x12 0(x28)
+jal x0 while_for_loop
+D:
+addi x31,x31,-1
+addi x27 x27 4 #increment base x11 copy
+bgt x27 x11 under_flow
+addi x28 x28 1
+lb x12 0(x28)
+jal x0 while_for_loop
+Size:
+add x15,x31,x0
+addi x28 x28 1
+lb x12 0(x28)
+jal x0 while_for_loop
+under_flow:
+li x10 , -1
+j exit
+over_flow:
+addi x10, x0, -2
+
+exit:
+
