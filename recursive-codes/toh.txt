@@ -1,0 +1,75 @@
+# TOH( n, from rod, to rod, help rod) {
+# if (n == 1) {
+# print: Move disk 1 from rod "from rod" to rod "to rod"
+# return;
+# }
+# TOH(n-1, from rod, help rod, to rod);
+# print: Move disk "n" from rod "from rod" to rod "to rod"
+# TOH(n-1, x13=help rod, x14=to rod, from rod);
+
+# }
+.data
+nvalue:.word 2
+rodA: .asciiz "A" # form rod
+rodB: .asciiz "B" # help rod
+rodC : .asciiz "C" # to rod
+value_of_x10: .word 0x10000020
+.text
+lw x10,value_of_x10
+lw x11,nvalue
+li x12,0 # x12=counter counts how many times the hanoi is executed
+lb x13,rodA # fromrod in x13
+lb x14,rodB # help rd in x14
+lb x15,rodC # to rod in x15
+jal x1,TOH # call TOH(n)
+j exit
+TOH:
+addi sp,sp,-20
+sw x1,0(sp) # x1 is add
+sw x11,4(sp) # x11=n
+sw x13,8(sp) # x13=fromrod
+sw x14,12(sp) # x14=helprod
+sw x15,16(sp) # x15= torod
+li x20,1 # x20=1 for checking base condition
+bgt x11,x20,l1
+sw x11,1(x10)
+sw x13,2(x10)
+sw x15,3(x10)
+addi x10,x10,4
+addi sp,sp,20
+jalr x0,x1,0
+l1:
+
+addi sp,sp,-20
+sw x11,4(sp)
+sw x13,8(sp) # x13=fromrod
+sw x14,12(sp) # x14=helprod
+sw x15,16(sp) # x15= torod
+lw x14,16(sp) # x14=helprod
+lw x15,12(sp) # x15= torod
+
+addi x11,x11,-1 # x11=n-1
+
+
+jal x1,TOH # we lose everything
+lw x1,0(sp)
+lw x11,4(sp)
+
+lw x13,8(sp) # fromrod
+lw x14,12(sp) # x14=helprod
+lw x15,16(sp) # x15= torod
+
+sw x11,1(x10)
+sw x13,2(x10) # storitg form rod
+sw x15,3(x10) # to rod
+addi x10,x10,4
+lw x13,12(sp) # x13=help rod
+lw x14,8(sp) # x16=to_rod
+lw x15,16(sp)  # from rod
+
+addi x11,x11,-1
+jal x1,TOH
+# lw x1,0(sp)
+# addi sp,sp,20
+# jalr x0,x1,0
+exit:
